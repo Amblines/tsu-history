@@ -19,6 +19,7 @@
         </q-tab-panel>
 
         <q-tab-panel name="chapters">
+          <Chapter></Chapter>
         </q-tab-panel>
 
         <q-tab-panel name="formatSize">
@@ -29,8 +30,10 @@
 </template>
 
 <script>
+import Chapter from 'components/Drawer/Navigation/Chapter'
 export default {
   name: 'Tabs',
+  components: { Chapter },
   data () {
     return {
       tab: ''
@@ -55,8 +58,8 @@ export default {
     }
   }
   &-sub-panel {
-    height: 100vh;
-    width: 200px;
+    height: calc(100vh - 52px);
+    min-width: 400px;
     left: 71px;
   }
 }

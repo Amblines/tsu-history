@@ -9,6 +9,16 @@ export default {
   mutations: {
     createBook (state, entity) {
       state.book.entity = entity
+      state.book.entity.loaded.navigation.then((toc) => {
+        const arr = []
+        toc.forEach((chapter) => {
+          arr.push({
+            label: chapter.label,
+            link: chapter.href
+          })
+        })
+        state.book.chapters = arr
+      })
     }
   },
   state: {
