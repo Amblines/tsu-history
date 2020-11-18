@@ -6,7 +6,7 @@
       </div>
     </q-linear-progress>
     <div class="flex justify-between flex-center">
-      <span>Глава: {{ chapter }}</span>
+      <span>{{ chapter }}</span>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
   },
   data () {
     return {
-      progress: null
+      progress: 0.1
     }
   },
   computed: {

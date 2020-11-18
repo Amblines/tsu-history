@@ -1,5 +1,5 @@
 <template>
-  <q-page class="relative-position">
+  <q-page @click="clickOutside" class="relative-position">
     <RenderedEbupFrame></RenderedEbupFrame>
     <div v-show="showUserInterface" class="navigation">
       <Navigation></Navigation>
@@ -19,6 +19,7 @@ import { mapGetters } from 'vuex'
 import RenderedEbupFrame from 'components/Reader/RenderedEbupFrame'
 import ProgressBar from 'components/Reader/UserInterface/ProgressBar'
 import Navigation from 'components/Reader/UserInterface/Navigation'
+import { EventBus } from 'boot/EventBus'
 
 export default {
   name: 'Reader',
@@ -36,11 +37,26 @@ export default {
       'book'
     ])
   },
+  methods: {
+    clickOutside () {
+      EventBus.$emit('clickOutside')
+    }
+  },
   mounted () {
     this.book.entity.rendition.on('rendered', () => {
       this.chapter = this.book.entity.navigation.get(this.book.entity.rendition.currentLocation().start.href).label
       this.showPreloader = false
       this.showUserInterface = true
+    })
+    this.book.entity.rendition.hooks.content.register(function (contents, view) {
+      const elements = contents.document.getElementsByTagName('img')
+      const items = Array.prototype.slice.call(elements)
+
+      items.forEach(function (item) {
+        item.addEventListener('click', () => {
+          console.log(1)
+        })
+      })
     })
   }
 }
