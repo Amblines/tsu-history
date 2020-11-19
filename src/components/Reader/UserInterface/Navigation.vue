@@ -8,6 +8,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { EventBus } from 'boot/EventBus'
 export default {
   name: 'Navigation',
   computed: {
@@ -16,11 +17,13 @@ export default {
     ])
   },
   methods: {
-    nextPage () {
-      this.book.entity.rendition.next()
+    async nextPage () {
+      await this.book.entity.rendition.next()
+      EventBus.$emit('loadPage')
     },
-    prevPage () {
-      this.book.entity.rendition.prev()
+    async prevPage () {
+      await this.book.entity.rendition.prev()
+      EventBus.$emit('loadPage')
     }
   }
 }

@@ -2,7 +2,7 @@
   <q-list bordered class="no-padding">
     <q-item-label class="chapter-header text-white no-padding" header>Главы</q-item-label>
 
-    <q-item class="no-padding" clickable v-ripple @click="loadPage(chapter.link)" v-for="chapter in book.chapters" :key="chapter.label">
+    <q-item class="no-padding" clickable v-ripple @click="loadChapter(chapter.link)" v-for="chapter in book.chapters" :key="chapter.label">
       <q-item-section avatar>
         <q-avatar square>
           <img src="chapter.jpg">
@@ -19,6 +19,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { EventBus } from 'boot/EventBus'
 
 export default {
   name: 'Chapter',
@@ -28,8 +29,9 @@ export default {
     ])
   },
   methods: {
-    loadPage (href) {
-      this.book.entity.rendition.display(href)
+    async loadChapter (href) {
+      await this.book.entity.rendition.display(href)
+      EventBus.$emit('loadPage')
     }
   }
 }

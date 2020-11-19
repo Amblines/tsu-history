@@ -5,7 +5,7 @@
       <Navigation></Navigation>
     </div>
     <div v-show="showUserInterface" class="book-interface">
-      <ProgressBar :chapter="chapter"></ProgressBar>
+      <ProgressBar></ProgressBar>
     </div>
     <q-inner-loading :showing="showPreloader">
       <q-spinner-gears size="50px" color="primary" />
@@ -26,7 +26,6 @@ export default {
   components: { Navigation, ProgressBar, RenderedEbupFrame },
   data () {
     return {
-      chapter: null,
       page: null,
       showUserInterface: false,
       showPreloader: true
@@ -44,9 +43,9 @@ export default {
   },
   mounted () {
     this.book.entity.rendition.on('rendered', () => {
-      this.chapter = this.book.entity.navigation.get(this.book.entity.rendition.currentLocation().start.href).label
       this.showPreloader = false
       this.showUserInterface = true
+      EventBus.$emit('loadPage')
     })
     this.book.entity.rendition.hooks.content.register(function (contents, view) {
       const elements = contents.document.getElementsByTagName('img')

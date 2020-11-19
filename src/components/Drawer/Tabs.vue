@@ -36,7 +36,7 @@
 <script>
 
 import Chapter from 'components/Drawer/Navigation/Chapter'
-import TextSettings from 'components/Reader/UserInterface/TextSettings'
+import TextSettings from 'components/Drawer/Navigation/TextSettings'
 import Search from 'components/Drawer/Navigation/Search'
 import { EventBus } from 'boot/EventBus'
 
