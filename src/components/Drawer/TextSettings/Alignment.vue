@@ -1,13 +1,17 @@
 <template>
   <div class="row items-center text-settings__section">
     <div class="col-12">
-      <div class="flex">
-        <span style="margin-right: 4px">Выравнивание</span>
+      <div class="flex settings-items-header">
+        <span>Выравнивание</span>
       </div>
     </div>
     <div class="col-12">
-      <q-btn @click="changeAlignment('left')" dense flat icon="format_align_left"></q-btn>
-      <q-btn @click="changeAlignment('justify')" dense flat icon="format_align_justify"></q-btn>
+      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="changeAlignment('justify')" dense>
+        <q-icon color="main-tsu-buttons-icon" name="format_align_justify"></q-icon>
+      </q-btn>
+      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="changeAlignment('left')" dense>
+        <q-icon color="main-tsu-buttons-icon" name="format_align_left"></q-icon>
+      </q-btn>
     </div>
   </div>
 </template>

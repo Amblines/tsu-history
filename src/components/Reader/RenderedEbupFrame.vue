@@ -20,7 +20,7 @@ export default {
       this.book.entity.rendition = this.book.entity.renderTo('epubFrame', {
         manager: 'continuous',
         width: '100wv',
-        height: 'calc(95vh - 52px)'
+        height: 'calc(100vh - 109px)'
       })
       this.displayed = this.book.entity.rendition.display()
     }

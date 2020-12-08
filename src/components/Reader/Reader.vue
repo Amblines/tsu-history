@@ -47,6 +47,9 @@ export default {
       this.showUserInterface = true
       EventBus.$emit('loadPage')
     })
+    this.book.entity.ready.then(() => {
+      this.book.entity.locations.generate()
+    })
     this.book.entity.rendition.hooks.content.register(function (contents, view) {
       const elements = contents.document.getElementsByTagName('img')
       const items = Array.prototype.slice.call(elements)

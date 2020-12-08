@@ -1,0 +1,13 @@
+@mixin fontface($name, $dir, $file, $weight: normal, $style: normal){
+  @font-face {
+    font-family: "#{$name}";
+    src: url("~assets/fonts/#{$dir}/#{$file}.ttf") format("truetype");
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+@mixin background-opacity($color, $opacity: 0.3) {
+  background: $color; /* The Fallback */
+  background: rgba($color, $opacity);
+}

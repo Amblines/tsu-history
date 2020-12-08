@@ -1,14 +1,18 @@
 <template>
   <div class="row items-center text-settings__section">
-    <div class="col-6">
-      <div class="column">
-        <span style="margin-right: 4px">Размер текста:</span>
-        <span>{{ fontSize }}px</span>
+    <div class="col-12">
+      <div class="column settings-items-header">
+        <span>Размер текста</span>
       </div>
     </div>
-    <div class="col-6 flex justify-end">
-      <q-btn @click="reduceFontSize" dense flat rounded icon="remove_circle_outline"></q-btn>
-      <q-btn @click="increaseFontSize" dense flat rounded icon="add_circle_outline"></q-btn>
+    <div class="col-12">
+      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="reduceFontSize" dense>
+        <q-icon color="main-tsu-buttons-icon" name="remove"></q-icon>
+      </q-btn>
+      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="increaseFontSize" dense>
+        <q-icon color="main-tsu-buttons-icon" name="add"></q-icon>
+      </q-btn>
+      <span style="font-weight: bold">{{ fontSize }}</span>
     </div>
   </div>
 </template>

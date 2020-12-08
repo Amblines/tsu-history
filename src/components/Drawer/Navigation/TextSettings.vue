@@ -1,11 +1,14 @@
 <template>
   <div class="text-settings">
-    <ReaderView></ReaderView>
+    <q-btn @click="closeSettings()" dense flat class="text-settings__close-btn">
+      <q-icon name="close"></q-icon>
+    </q-btn>
+    <Brightness></Brightness>
     <Theme></Theme>
-    <FontSize></FontSize>
-    <LineSpacing></LineSpacing>
     <Alignment></Alignment>
     <Font></Font>
+    <FontSize></FontSize>
+    <LineSpacing></LineSpacing>
   </div>
 </template>
 
@@ -14,26 +17,36 @@
 import { mapGetters } from 'vuex'
 import FontSize from 'components/Drawer/TextSettings/FontSize'
 import LineSpacing from 'components/Drawer/TextSettings/LineSpacing'
-import Alignment from 'components/Drawer/TextSettings/Alignment'
 import Font from 'components/Drawer/TextSettings/Font'
-import ReaderView from 'components/Drawer/TextSettings/ReaderView'
 import Theme from 'components/Drawer/TextSettings/Theme'
+import { EventBus } from 'boot/EventBus'
+import Brightness from 'components/Drawer/TextSettings/Brightness'
+import Alignment from 'components/Drawer/TextSettings/Alignment'
 
 export default {
   name: 'TextSettings',
-  components: { Theme, ReaderView, Font, Alignment, LineSpacing, FontSize },
+  components: { Alignment, Brightness, Theme, Font, LineSpacing, FontSize },
   computed: {
     ...mapGetters([
       'book'
     ])
+  },
+  methods: {
+    closeSettings () {
+      EventBus.$emit('clickDrawerButton')
+    }
   }
 }
 </script>
 
 <style lang="scss">
   .text-settings {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
+    &__close-btn {
+      font-size: 20px;
+      margin-bottom: 50px;
+    }
     &__section {
       &:not(:last-child) {
         margin-bottom: 10px;

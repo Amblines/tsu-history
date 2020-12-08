@@ -1,19 +1,29 @@
 <template>
-  <q-header elevated>
+  <q-header elevated class="bg-main-tsu">
     <q-toolbar
       class="header"
     >
-      <q-btn class="lt-md" flat @click="clickDrawerButton" round dense icon="menu" />
       <q-img :src="brandSrc" class="header__logo"></q-img>
 
-      <q-toolbar-title>
+      <h1 class="header__title text-dark">
         {{ title }}
-      </q-toolbar-title>
+      </h1>
+
+      <q-space></q-space>
 
       <div class="header-icons">
-        <q-btn class="header-icons__item" dense flat rounded icon="bookmarks"></q-btn>
-        <q-btn class="header-icons__item" dense flat rounded icon="cloud_download"></q-btn>
-        <q-btn class="header-icons__item" dense flat rounded icon="cached"></q-btn>
+        <q-btn class="header-icons__item" dense flat>
+          <q-icon class="header-icons__icon" name="search"></q-icon>
+        </q-btn>
+        <q-btn class="header-icons__item" dense flat>
+          <q-icon class="header-icons__icon" name="bookmark"></q-icon>
+        </q-btn>
+        <q-btn class="header-icons__item" dense flat>
+          <q-icon class="header-icons__icon" name="menu"></q-icon>
+        </q-btn>
+        <q-btn @click="clickDrawerButton" class="header-icons__item" dense flat>
+          <q-icon class="header-icons__icon" name="settings"></q-icon>
+        </q-btn>
       </div>
     </q-toolbar>
   </q-header>
@@ -42,23 +52,29 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .header {
-  background-color: $secondary;
-  min-height: 52px;
-  padding-left: 0;
+  min-height: 89px;
+  &__title {
+    margin-top: 18px;
+    font-family: "Helvetica", sans-serif;
+    font-size: 16px;
+    max-width: 440px;
+    line-height: 25px;
+  }
   &-icons {
-    font-size: 24px;
     &__item {
+      font-size: 20px;
       &:not(:last-child) {
-        margin-right: 15px;
+        margin-right: 30px;
       }
     }
   }
   &__logo {
     margin-top: 1px;
-    width: 119px;
-    height: 49px;
+    margin-right: 35px;
+    width: 138px;
+    height: 50px;
   }
 }
 </style>

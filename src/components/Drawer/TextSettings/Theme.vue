@@ -1,20 +1,26 @@
 <template>
   <div class="row items-center text-settings__section">
     <div class="col-12">
-      <span class="theme-select__header">Тема</span>
+      <span class="block settings-items-header">Тема</span>
     </div>
     <div class="col-12 row items-center">
-      <q-btn class="theme-select" size="12px" dense round color="white"></q-btn>
-      <q-btn class="theme-select" size="12px" dense round color="black"></q-btn>
-      <q-btn class="theme-select" size="12px" dense round color="brown"></q-btn>
-      <q-btn class="theme-select" size="12px" dense round color="grey"></q-btn>
+      <q-btn @click="loadTheme('default')" class="theme-select" size="8px" dense round color="theme-default"></q-btn>
+      <q-btn @click="loadTheme('darken')" class="theme-select" size="8px" dense round color="theme-darken"></q-btn>
     </div>
   </div>
 </template>
 
 <script>
+import { EventBus } from 'boot/EventBus'
+
 export default {
-  name: 'Theme'
+  name: 'Theme',
+  methods: {
+    loadTheme (theme) {
+      EventBus.$emit('loadTheme', theme)
+      EventBus.$emit('clickDrawerButton')
+    }
+  }
 }
 </script>
 
@@ -22,10 +28,6 @@ export default {
   .theme-select {
     &:not(:last-child) {
       margin-right: 10px;
-    }
-    &__header {
-      display: inline-block;
-      margin-bottom: 7px;
     }
   }
 </style>

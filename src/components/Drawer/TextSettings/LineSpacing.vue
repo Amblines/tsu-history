@@ -1,14 +1,18 @@
 <template>
   <div class="row items-center text-settings__section">
-    <div class="col-6">
-      <div>
-        <span style="margin-right: 4px">Междустрочный интервал:</span>
-        <span>{{ lineSpacing.toFixed(1) }}</span>
+    <div class="col-12">
+      <div class="settings-items-header">
+        <span>Междустрочный интервал</span>
       </div>
     </div>
-    <div class="col-6 flex justify-end">
-      <q-btn @click="reduceLineSpacing" dense flat rounded icon="remove_circle_outline"></q-btn>
-      <q-btn @click="increaseLineSpacing" dense flat rounded icon="add_circle_outline"></q-btn>
+    <div class="col-12">
+      <q-btn color="main-tsu-buttons-bg" @click="reduceLineSpacing" class="on-left" dense>
+        <q-icon color="main-tsu-buttons-icon" name="remove"></q-icon>
+      </q-btn>
+      <q-btn color="main-tsu-buttons-bg" @click="increaseLineSpacing" class="on-left" dense>
+        <q-icon color="main-tsu-buttons-icon" name="add"></q-icon>
+      </q-btn>
+      <span style="font-weight: bold">{{ lineSpacing.toFixed(1) }}</span>
     </div>
   </div>
 </template>

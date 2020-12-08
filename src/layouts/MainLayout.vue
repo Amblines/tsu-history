@@ -1,11 +1,11 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHr lpR fFf">
+    <ThemeObserver></ThemeObserver>
     <Header
-      title="Книга истории ТГУ"
+      title="История Тамбовского Государственного университета имени Г. Р. Державина. Второе издание"
       brand-src="header/logo.png"
     ></Header>
-    <Drawer>
-    </Drawer>
+    <drawer></drawer>
     <q-page-container>
       <router-view/>
     </q-page-container>
@@ -15,10 +15,12 @@
 <script>
 import Header from 'components/Header'
 import Drawer from 'components/Drawer/Drawer'
+import ThemeObserver from 'components/Reader/UserInterface/ThemeObserver'
 
 export default {
   name: 'MainLayout',
   components: {
+    ThemeObserver,
     Drawer,
     Header
   }

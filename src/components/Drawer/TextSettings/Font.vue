@@ -1,12 +1,13 @@
 <template>
   <div class="row items-center text-settings__section">
-    <div class="col-4">
-      <div class="column">
+    <div class="col-12">
+      <div class="column settings-items-header">
         <span>Шрифт</span>
       </div>
     </div>
-    <div class="col-8 flex justify-end">
-      <q-select @input="changeFont" class="full-width" label-color="black" bg-color="white" dense square filled v-model="font" :options="options" label="Выберите шрифт" />
+    <div class="col-9 flex justify-end">
+      <q-select @input="changeFont" bg-color="white" color="secondary" class="full-width" dense square filled v-model="font" :options="options">
+      </q-select>
     </div>
   </div>
 </template>
@@ -18,9 +19,9 @@ export default {
   name: 'Font',
   data () {
     return {
-      font: null,
+      font: 'Times',
       options: [
-        'Georgia', 'Times', 'Arial', 'Helvetica', 'Roboto'
+        'Georgia', 'Times', 'Arial', 'Helvetica', 'Roboto', 'PingFang'
       ]
     }
   },

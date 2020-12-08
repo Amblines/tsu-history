@@ -1,8 +1,49 @@
-.book-interface {
-  padding: 0 10px;
-  max-height: calc(5vh - 52px);
+@import "_mixins.scss";
+
+@include fontface("PingFang", "PingFang", "PingFang-SC-Regular", 400)
+@include fontface("PingFang", "PingFang", "PingFang-SC-Light", 300)
+@include fontface("PingFang", "PingFang", "PingFang-SC-Bold", 600)
+@include fontface("Helvetica", "Helvetica", "HelveticaRegular", 400)
+
+body {
+  font-family: "PingFang", sans-serif;
+  font-weight: 400;
+}
+
+:root {
+  --q-color-main-tsu: #0F0F0F;
+  --q-color-main-tsu-buttons-bg: #0F0F0F;
+  --q-color-main-tsu-buttons-icon: #fff;
+}
+
+.bg-theme-default {
+  background: $theme-default;
+}
+
+.bg-theme-darken {
+  background: $theme-darken;
+}
+
+.bg-main-tsu {
+  background: $main-tsu !important;
+  background: var(--q-color-main-tsu) !important;
+}
+
+.bg-main-tsu-buttons-bg {
+  background: $main-tsu-buttons-bg;
+  background: var(--q-color-main-tsu-buttons-bg) !important;
+}
+
+.text-main-tsu-buttons-icon {
+  color: $main-tsu-buttons-icon;
+  color: var(--q-color-main-tsu-buttons-icon) !important;
 }
 
 .tabs-drawer--active {
   background: #000 !important;
+}
+
+.settings-items-header {
+  font-weight: 600;
+  margin-bottom: 12px;
 }

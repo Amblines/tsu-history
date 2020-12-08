@@ -1,7 +1,7 @@
 <template>
   <div>
-    <q-btn flat rounded @click="prevPage" class="navigation-arrow navigation-arrow--left absolute" color="primary" icon="keyboard_arrow_left"/>
-    <q-btn flat rounded @click="nextPage" class="navigation-arrow navigation-arrow--right absolute" color="primary"
+    <q-btn flat rounded @click="prevPage" class="navigation-arrow navigation-arrow--left absolute" color="main-tsu-buttons-bg" icon="keyboard_arrow_left"/>
+    <q-btn flat rounded @click="nextPage" class="navigation-arrow navigation-arrow--right absolute" color="main-tsu-buttons-bg"
            icon="keyboard_arrow_right"/>
   </div>
 </template>
