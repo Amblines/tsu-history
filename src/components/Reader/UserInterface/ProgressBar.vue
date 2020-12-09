@@ -22,21 +22,17 @@ export default {
   computed: {
     ...mapGetters([
       'book'
-    ]),
-    label () {
-      return (this.progress * 100).toFixed(2) + '%'
-    }
+    ])
   },
   methods: {
     async loadPage () {
-      const cfi = this.book.entity.locations.cfiFromPercentage(this.progress / 100)
-      await this.book.entity.rendition.display(cfi)
+      EventBus.$emit('loadPageFromPercents', this.progress / 100)
     }
   },
   mounted () {
-    EventBus.$on('loadPage', () => {
-      this.chapter = this.book.entity.navigation.get(this.book.entity.rendition.currentLocation().start.href).label
-      this.progress = Math.round(this.book.entity.locations.percentageFromCfi(this.book.entity.rendition.currentLocation().start.cfi) * 100)
+    EventBus.$on('updateProgressBar', (entity) => {
+      this.chapter = entity.navigation.get(entity.rendition.currentLocation().start.href).label
+      this.progress = (entity.locations.percentageFromCfi(entity.rendition.currentLocation().start.cfi) * 100).toFixed(0)
     })
   }
 }

@@ -17,11 +17,13 @@ export default {
     ])
   },
   methods: {
-    async nextPage () {
+    nextPage () {
       EventBus.$emit('changePage', 'next')
+      EventBus.$emit('loadPage')
     },
-    async prevPage () {
+    prevPage () {
       EventBus.$emit('changePage', 'prev')
+      EventBus.$emit('loadPage')
     }
   }
 }

@@ -26,7 +26,7 @@ export default {
       'createBook'
     ]),
     async renderBook () {
-      this.bookRendered = Epub('https://s3.amazonaws.com/epubjs/books/moby-dick/OPS/package.opf')
+      this.bookRendered = Epub('book.epub')
 
       this.bookRendered.rendition = this.bookRendered.renderTo('epubFrame', {
         manager: 'continuous',
@@ -36,6 +36,7 @@ export default {
 
       this.bookRendered.rendition.on('rendered', () => {
         EventBus.$emit('bookRendered')
+        EventBus.$emit('updateProgressBar', this.bookRendered)
       })
 
       this.bookRendered.ready.then(() => {
@@ -61,8 +62,14 @@ export default {
     EventBus.$on('changeThemeOptions', (args) => {
       this.bookRendered.rendition.themes[args[0]](args[1])
     })
-    EventBus.$on('changePage', (value) => {
-      this.bookRendered.rendition[value]()
+    EventBus.$on('changePage', async (value) => {
+      await this.bookRendered.rendition[value]()
+      EventBus.$emit('updateProgressBar', this.bookRendered)
+    })
+    EventBus.$on('loadPageFromPercents', async (value) => {
+      const cfi = this.bookRendered.locations.cfiFromPercentage(value)
+      await this.bookRendered.rendition.display(cfi)
+      EventBus.$emit('updateProgressBar', this.bookRendered)
     })
     this.renderBook()
   }
