@@ -42,23 +42,9 @@ export default {
     }
   },
   mounted () {
-    this.book.entity.rendition.on('rendered', () => {
-      this.showPreloader = false
+    EventBus.$on('bookRendered', () => {
       this.showUserInterface = true
-      EventBus.$emit('loadPage')
-    })
-    this.book.entity.ready.then(() => {
-      this.book.entity.locations.generate()
-    })
-    this.book.entity.rendition.hooks.content.register(function (contents, view) {
-      const elements = contents.document.getElementsByTagName('img')
-      const items = Array.prototype.slice.call(elements)
-
-      items.forEach(function (item) {
-        item.addEventListener('click', () => {
-          console.log(1)
-        })
-      })
+      this.showPreloader = false
     })
   }
 }

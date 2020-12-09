@@ -1,3 +1,6 @@
+<template>
+  <div></div>
+</template>
 <script>
 import { colors } from 'quasar'
 import { EventBus } from 'boot/EventBus'

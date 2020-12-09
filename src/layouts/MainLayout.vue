@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHr lpR fFf">
+  <q-layout view="hHr lpR fFf" class="bg-primary">
     <ThemeObserver></ThemeObserver>
     <Header
       title="История Тамбовского Государственного университета имени Г. Р. Державина. Второе издание"

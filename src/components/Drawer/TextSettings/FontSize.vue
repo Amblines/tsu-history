@@ -6,10 +6,10 @@
       </div>
     </div>
     <div class="col-12">
-      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="reduceFontSize" dense>
+      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="fontSize--" dense>
         <q-icon color="main-tsu-buttons-icon" name="remove"></q-icon>
       </q-btn>
-      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="increaseFontSize" dense>
+      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="fontSize++" dense>
         <q-icon color="main-tsu-buttons-icon" name="add"></q-icon>
       </q-btn>
       <span style="font-weight: bold">{{ fontSize }}</span>
@@ -19,29 +19,33 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { EventBus } from 'boot/EventBus'
 
 export default {
   name: 'FontSize',
-  data () {
-    return {
-      fontSize: 14
-    }
-  },
   computed: {
     ...mapGetters([
-      'book'
-    ])
+      'book',
+      'settings'
+    ]),
+    fontSize: {
+      get () {
+        return this.settings.fontSize
+      },
+      set (value) {
+        this.updateSettings({
+          key: 'fontSize',
+          value: value
+        })
+        EventBus.$emit('changeThemeOptions', ['fontSize', value + 'px'])
+      }
+    }
   },
   methods: {
-    increaseFontSize () {
-      this.fontSize++
-      this.book.entity.rendition.themes.fontSize(this.fontSize + 'px')
-    },
-    reduceFontSize () {
-      this.fontSize--
-      this.book.entity.rendition.themes.fontSize(this.fontSize + 'px')
-    }
+    ...mapMutations([
+      'updateSettings'
+    ])
   }
 }
 </script>

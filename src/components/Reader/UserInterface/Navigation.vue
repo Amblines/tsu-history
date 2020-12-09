@@ -18,12 +18,10 @@ export default {
   },
   methods: {
     async nextPage () {
-      await this.book.entity.rendition.next()
-      EventBus.$emit('loadPage')
+      EventBus.$emit('changePage', 'next')
     },
     async prevPage () {
-      await this.book.entity.rendition.prev()
-      EventBus.$emit('loadPage')
+      EventBus.$emit('changePage', 'prev')
     }
   }
 }

@@ -6,10 +6,10 @@
       </div>
     </div>
     <div class="col-12">
-      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="changeAlignment('justify')" dense>
+      <q-btn :disabled="alignment === 'justify'" color="main-tsu-buttons-bg" class="on-left" @click="alignment = 'justify'" dense>
         <q-icon color="main-tsu-buttons-icon" name="format_align_justify"></q-icon>
       </q-btn>
-      <q-btn color="main-tsu-buttons-bg" class="on-left" @click="changeAlignment('left')" dense>
+      <q-btn :disabled="alignment === 'left'" color="main-tsu-buttons-bg" class="on-left" @click="alignment = 'left'" dense>
         <q-icon color="main-tsu-buttons-icon" name="format_align_left"></q-icon>
       </q-btn>
     </div>
@@ -17,19 +17,33 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { EventBus } from 'boot/EventBus'
 
 export default {
   name: 'Alignment',
   computed: {
     ...mapGetters([
-      'book'
-    ])
+      'book',
+      'settings'
+    ]),
+    alignment: {
+      get () {
+        return this.settings.alignment
+      },
+      set (value) {
+        this.updateSettings({
+          key: 'alignment',
+          value: value
+        })
+        EventBus.$emit('changeThemeOptions', ['default', { p: { 'text-align': value + ' !important' } }])
+      }
+    }
   },
   methods: {
-    changeAlignment (value) {
-      this.book.entity.rendition.themes.default({ p: { 'text-align': value + ' !important' } })
-    }
+    ...mapMutations([
+      'updateSettings'
+    ])
   }
 }
 </script>

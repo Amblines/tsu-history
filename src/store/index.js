@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import book from './book'
+import user from './user'
+
+import { vuexLocal } from 'boot/Persistence'
 
 Vue.use(Vuex)
 
@@ -15,15 +18,15 @@ Vue.use(Vuex)
  */
 
 export default function (/* { ssrContext } */) {
-  const Store = new Vuex.Store({
+  return new Vuex.Store({
     modules: {
-      book
+      book,
+      user
     },
+    plugins: [vuexLocal.plugin],
 
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEBUGGING
   })
-
-  return Store
 }

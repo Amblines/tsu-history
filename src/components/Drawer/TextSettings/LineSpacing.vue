@@ -6,41 +6,45 @@
       </div>
     </div>
     <div class="col-12">
-      <q-btn color="main-tsu-buttons-bg" @click="reduceLineSpacing" class="on-left" dense>
+      <q-btn color="main-tsu-buttons-bg" @click="lineHeight -= 0.1" class="on-left" dense>
         <q-icon color="main-tsu-buttons-icon" name="remove"></q-icon>
       </q-btn>
-      <q-btn color="main-tsu-buttons-bg" @click="increaseLineSpacing" class="on-left" dense>
+      <q-btn color="main-tsu-buttons-bg" @click="lineHeight += 0.1" class="on-left" dense>
         <q-icon color="main-tsu-buttons-icon" name="add"></q-icon>
       </q-btn>
-      <span style="font-weight: bold">{{ lineSpacing.toFixed(1) }}</span>
+      <span style="font-weight: bold">{{ lineHeight.toFixed(1) }}</span>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { EventBus } from 'boot/EventBus'
 
 export default {
   name: 'LineSpacing',
-  data () {
-    return {
-      lineSpacing: 1.5
-    }
-  },
   computed: {
     ...mapGetters([
-      'book'
-    ])
+      'book',
+      'settings'
+    ]),
+    lineHeight: {
+      get () {
+        return this.settings.lineHeight
+      },
+      set (value) {
+        this.updateSettings({
+          key: 'lineHeight',
+          value: value
+        })
+        EventBus.$emit('changeThemeOptions', ['default', { p: { 'line-height': value + ' !important' } }])
+      }
+    }
   },
   methods: {
-    increaseLineSpacing () {
-      this.lineSpacing += 0.1
-      this.book.entity.rendition.themes.default({ p: { 'line-height': this.lineSpacing + ' !important' } })
-    },
-    reduceLineSpacing () {
-      this.lineSpacing -= 0.1
-      this.book.entity.rendition.themes.default({ p: { 'line-height': this.lineSpacing + ' !important' } })
-    }
+    ...mapMutations([
+      'updateSettings'
+    ])
   }
 }
 </script>

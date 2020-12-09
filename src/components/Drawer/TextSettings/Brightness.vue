@@ -12,18 +12,35 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { colors } from 'quasar'
+import { EventBus } from 'boot/EventBus'
 
 export default {
   name: 'Brightness',
-  data () {
-    return {
-      brightness: 10
-    }
-  },
   computed: {
     ...mapGetters([
-      'book'
+      'book',
+      'settings'
+    ]),
+    brightness: {
+      get () {
+        return this.settings.brightness
+      },
+      set (value) {
+        this.updateSettings({
+          key: 'brightness',
+          value: value
+        })
+        colors.setBrand('primary', colors.lighten('#000', value), document.getElementById('q-app'))
+        EventBus.$emit('changeThemeOptions', ['default', { body: { 'background-color': colors.lighten('#000', value) } }])
+        EventBus.$emit('changeThemeOptions', ['default', { body: { color: colors.lighten('#fff', -value) + '!important' } }])
+      }
+    }
+  },
+  methods: {
+    ...mapMutations([
+      'updateSettings'
     ])
   }
 }

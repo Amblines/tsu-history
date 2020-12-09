@@ -10,6 +10,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { EventBus } from 'boot/EventBus'
+
 export default {
   name: 'ProgressBar',
   data () {
@@ -35,6 +36,7 @@ export default {
   mounted () {
     EventBus.$on('loadPage', () => {
       this.chapter = this.book.entity.navigation.get(this.book.entity.rendition.currentLocation().start.href).label
+      this.progress = Math.round(this.book.entity.locations.percentageFromCfi(this.book.entity.rendition.currentLocation().start.cfi) * 100)
     })
   }
 }
@@ -48,6 +50,7 @@ export default {
   padding: 20px 100px 10px;
   opacity: .85;
 }
+
 .progress-bar__title {
   display: inline-block;
   font-family: 'Helvetica', sans-serif;

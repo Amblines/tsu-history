@@ -5,7 +5,6 @@
     side="right"
     overlay
     content-class="drawer"
-    width="350"
   >
     <div class="settings-overlay bg-main-tsu">
     </div>
