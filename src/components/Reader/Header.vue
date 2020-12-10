@@ -1,39 +1,39 @@
 <template>
   <q-header elevated class="bg-main-tsu">
+    <OverlayMenu></OverlayMenu>
     <q-toolbar
       class="header"
     >
       <q-img :src="brandSrc" class="header__logo"></q-img>
 
-      <h1 class="header__title text-dark">
+      <h1 class="header__title text-dark gt-sm">
         {{ title }}
       </h1>
 
       <q-space></q-space>
 
-      <div class="header-icons">
+      <q-btn-group flat class="header-icons no-wrap flex">
         <q-btn class="header-icons__item" dense flat>
-          <q-icon class="header-icons__icon" name="search"></q-icon>
+          <q-icon class="header-icons__icon" name="update"></q-icon>
         </q-btn>
-        <q-btn class="header-icons__item" dense flat>
-          <q-icon class="header-icons__icon" name="bookmark"></q-icon>
-        </q-btn>
-        <q-btn class="header-icons__item" dense flat>
-          <q-icon class="header-icons__icon" name="menu"></q-icon>
+        <q-btn @click="clickMenuButton" class="header-icons__item" dense flat>
+          <q-icon class="header-icons__icon" name="apps"></q-icon>
         </q-btn>
         <q-btn @click="clickDrawerButton" class="header-icons__item" dense flat>
           <q-icon class="header-icons__icon" name="settings"></q-icon>
         </q-btn>
-      </div>
+      </q-btn-group>
     </q-toolbar>
   </q-header>
 </template>
 
 <script>
 import { EventBus } from 'boot/EventBus'
+import OverlayMenu from 'components/Navigation/OverlayMenu'
 
 export default {
   name: 'Header',
+  components: { OverlayMenu },
   props: {
     title: {
       type: String,
@@ -47,12 +47,15 @@ export default {
   methods: {
     clickDrawerButton () {
       EventBus.$emit('clickDrawerButton')
+    },
+    clickMenuButton () {
+      EventBus.$emit('clickShowOverlayMenuButton')
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .header {
   min-height: 89px;
   &__title {
@@ -64,9 +67,12 @@ export default {
   }
   &-icons {
     &__item {
-      font-size: 20px;
+      font-size: 23px;
       &:not(:last-child) {
-        margin-right: 30px;
+        margin-right: 10px;
+        @media screen and (max-width: $breakpoint-xs){
+          margin-right: 0;
+        }
       }
     }
   }

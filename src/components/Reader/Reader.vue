@@ -8,7 +8,7 @@
       <ProgressBar></ProgressBar>
     </div>
     <q-inner-loading :showing="showPreloader">
-      <q-spinner-gears size="50px" color="primary" />
+      <q-spinner-gears size="50px" color="#0F0F0F" />
     </q-inner-loading>
   </q-page>
 </template>

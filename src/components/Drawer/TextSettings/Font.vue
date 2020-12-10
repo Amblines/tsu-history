@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       options: [
-        'Georgia', 'Times', 'Arial', 'Helvetica', 'Roboto'
+        'Georgia', 'Times', 'Arial', 'Helvetica', 'Roboto', 'PingFang'
       ]
     }
   },

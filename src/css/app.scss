@@ -14,6 +14,16 @@ body {
   --q-color-main-tsu: #0F0F0F;
   --q-color-main-tsu-buttons-bg: #0F0F0F;
   --q-color-main-tsu-buttons-icon: #fff;
+  --q-color-main-tsu-card-bg: #fff;
+  --q-color-main-tsu-card-text: #000;
+}
+
+.bg-main-tsu-card-bg {
+  background: var(--q-color-main-tsu-card-bg) !important;
+}
+
+.text-main-tsu-card-text {
+  color: var(--q-color-main-tsu-card-text) !important;
 }
 
 .bg-theme-default {
@@ -46,4 +56,36 @@ body {
 .settings-items-header {
   font-weight: 600;
   margin-bottom: 12px;
+}
+
+.overlay-menu-card {
+  padding: 26px 37px;
+  font-weight: 600;
+  border-radius: 18px;
+  font-size: 24px;
+  min-height: 125px;
+  max-height: 125px;
+  text-overflow: ellipsis;
+  &__label {
+    display: block;
+    line-height: 39px;
+    &--chapter {
+      line-height: 30px;
+      font-weight: 400;
+      font-size: 22px;
+    }
+    &--quotes {
+      font-size: 22px;
+      font-weight: 400;
+      max-width: 95%;
+    }
+  }
+}
+
+.q-tab-panels {
+  background: none;
+}
+
+.q-tab-panel {
+  padding: 0
 }

@@ -16,7 +16,7 @@
 
 <script>
 import { EventBus } from 'boot/EventBus'
-import TextSettings from 'components/Drawer/Navigation/TextSettings'
+import TextSettings from 'components/Drawer/TextSettings'
 export default {
   name: 'Drawer',
   components: { TextSettings },

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Header from 'components/Header'
+import Header from 'components/Reader/Header'
 import Drawer from 'components/Drawer/Drawer'
 import ThemeObserver from 'components/Reader/UserInterface/ThemeObserver'
 

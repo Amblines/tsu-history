@@ -17,7 +17,9 @@ export default {
           options: {
             'main-tsu': '#002698',
             'main-tsu-buttons-bg': '#fff',
-            'main-tsu-buttons-icon': '#0F0F0F'
+            'main-tsu-buttons-icon': '#0F0F0F',
+            'main-tsu-card-bg': '#fff',
+            'main-tsu-card-text': '#000'
           }
         },
         {
@@ -25,7 +27,9 @@ export default {
           options: {
             'main-tsu': '#0F0F0F',
             'main-tsu-buttons-bg': '#0F0F0F',
-            'main-tsu-buttons-icon': '#fff'
+            'main-tsu-buttons-icon': '#fff',
+            'main-tsu-card-bg': '#333',
+            'main-tsu-card-text': '#fff'
           }
         }
       ]

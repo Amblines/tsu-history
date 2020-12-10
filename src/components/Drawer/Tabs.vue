@@ -35,9 +35,9 @@
 
 <script>
 
-import Chapter from 'components/Drawer/Navigation/Chapter'
-import TextSettings from 'components/Drawer/Navigation/TextSettings'
-import Search from 'components/Drawer/Navigation/Search'
+import Chapter from 'components/Navigation/Chapters'
+import TextSettings from 'components/Drawer/TextSettings'
+import Search from 'components/Navigation/Search'
 import { EventBus } from 'boot/EventBus'
 
 export default {

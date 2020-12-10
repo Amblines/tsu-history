@@ -2,16 +2,20 @@ export default {
   actions: {
   },
   mutations: {
-    createBook (state, entity) {
-      state.book.rendition = {}
+    loadChapters (state, chapters) {
+      state.chapters = chapters
     }
   },
   state: {
-    book: {}
+    book: {},
+    chapters: []
   },
   getters: {
     book (state) {
       return state.book
+    },
+    chapters (state) {
+      return state.chapters
     }
   }
 }
