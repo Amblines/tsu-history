@@ -19,8 +19,8 @@
           <q-icon name="close"></q-icon>
         </q-btn>
       </q-tabs>
-      <q-tab-panels class="full-height overlay-menu__content" v-model="tab" animated transition-next="fade" transition-prev="fade">
-        <q-tab-panel name="chapters" class="bg-primary text-black">
+      <q-tab-panels class="full-height overlay-menu__content bg-primary" v-model="tab" animated transition-next="fade" transition-prev="fade">
+        <q-tab-panel name="chapters" class="full-height bg-primary text-black">
           <div class="overlay-menu-container">
             <Chapters></Chapters>
           </div>

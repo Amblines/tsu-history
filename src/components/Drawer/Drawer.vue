@@ -1,7 +1,6 @@
 <template>
   <q-drawer
     v-model="showDrawer"
-    show-if-above
     side="right"
     overlay
     content-class="drawer"

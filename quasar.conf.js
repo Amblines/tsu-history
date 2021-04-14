@@ -101,7 +101,8 @@ module.exports = function (/* ctx */) {
 
       // Quasar plugins
       plugins: [
-        'LocalStorage'
+        'LocalStorage',
+        'Notify'
       ]
     },
 
@@ -168,7 +169,7 @@ module.exports = function (/* ctx */) {
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
     electron: {
-      bundler: 'packager', // 'packager' or 'builder'
+      bundler: 'builder', // 'packager' or 'builder'
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
@@ -184,9 +185,11 @@ module.exports = function (/* ctx */) {
       },
 
       builder: {
-        // https://www.electron.build/configuration/configuration
-
-        appId: 'history-tsu-book-ready'
+        appId: 'history-tsu-book-ready',
+        win: {
+          publisherName: 'TSU Tambov',
+          target: 'portable'
+        }
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration

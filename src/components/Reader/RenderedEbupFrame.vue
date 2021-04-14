@@ -34,7 +34,7 @@ export default {
       this.bookRendered.rendition = this.bookRendered.renderTo('epubFrame', {
         manager: 'continuous',
         width: '100wv',
-        height: 'calc(100vh - 109px)'
+        height: 'calc(100vh - 89px)'
       })
 
       this.bookRendered.rendition.on('rendered', () => {
@@ -89,6 +89,10 @@ export default {
             a.onclick = () => {
               this.bookRendered.display(cfiRange)
             }
+            this.$q.notify({
+              type: 'positive',
+              message: 'Цитата успешно сохранена.'
+            })
             this.addQuotes({
               link: cfiRange,
               text: text
@@ -98,19 +102,20 @@ export default {
       })
     },
     async loadUserSettings () {
-      EventBus.$emit('changeThemeOptions', ['default', { p: { 'font-family': this.settings.font + ' !important' } }])
-      EventBus.$emit('changeThemeOptions', ['default', { p: { 'text-align': this.settings.alignment + ' !important' } }])
-      EventBus.$emit('changeThemeOptions', ['default', { p: { 'line-height': this.settings.lineHeight + ' !important' } }])
-      EventBus.$emit('changeThemeOptions', ['fontSize', this.settings.fontSize + 'px'])
-      EventBus.$emit('loadTheme', this.settings.theme)
-      colors.setBrand('primary', colors.lighten('#000', this.settings.brightness), document.getElementById('q-app'))
-      EventBus.$emit('changeThemeOptions', ['default', { body: { 'background-color': colors.lighten('#000', this.settings.brightness) } }])
-      EventBus.$emit('changeThemeOptions', ['default', { body: { color: colors.lighten('#fff', -this.settings.brightness) + '!important' } }])
       if (this.settings.cfi === null) {
         await this.bookRendered.rendition.display()
       } else {
         await this.bookRendered.rendition.display(this.settings.cfi)
       }
+      EventBus.$emit('changeThemeOptions', ['default', { body: { 'font-family': this.settings.font + ' !important' } }])
+      EventBus.$emit('changeThemeOptions', ['default', { body: { 'text-align': this.settings.alignment + ' !important' } }])
+      EventBus.$emit('changeThemeOptions', ['default', { body: { 'line-height': this.settings.lineHeight + ' !important' } }])
+      console.log(this.settings.lineHeight)
+      EventBus.$emit('changeThemeOptions', ['fontSize', this.settings.fontSize + 'px'])
+      EventBus.$emit('loadTheme', this.settings.theme)
+      colors.setBrand('primary', colors.lighten('#000', this.settings.brightness), document.getElementById('q-app'))
+      EventBus.$emit('changeThemeOptions', ['default', { body: { 'background-color': colors.lighten('#000', this.settings.brightness) } }])
+      EventBus.$emit('changeThemeOptions', ['default', { body: { color: colors.lighten('#fff', -this.settings.brightness) + '!important' } }])
       EventBus.$emit('updateProgressBar', this.bookRendered)
     }
   },

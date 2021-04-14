@@ -13,7 +13,7 @@
       <q-space></q-space>
 
       <q-btn-group flat class="header-icons no-wrap flex">
-        <q-btn class="header-icons__item" dense flat>
+        <q-btn @click="clickReloadButton" class="header-icons__item" dense flat>
           <q-icon class="header-icons__icon" name="update"></q-icon>
         </q-btn>
         <q-btn @click="clickMenuButton" class="header-icons__item" dense flat>
@@ -50,6 +50,9 @@ export default {
     },
     clickMenuButton () {
       EventBus.$emit('clickShowOverlayMenuButton')
+    },
+    clickReloadButton () {
+      location.reload()
     }
   }
 }

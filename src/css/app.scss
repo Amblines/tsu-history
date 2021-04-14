@@ -39,6 +39,10 @@ body {
   background: var(--q-color-main-tsu) !important;
 }
 
+.text-main-tsu {
+  color: var(--q-color-main-tsu-card-text) !important;
+}
+
 .bg-main-tsu-buttons-bg {
   background: $main-tsu-buttons-bg;
   background: var(--q-color-main-tsu-buttons-bg) !important;
@@ -87,5 +91,9 @@ body {
 }
 
 .q-tab-panel {
-  padding: 0
+  padding: 0;
+}
+
+.q-panel > div {
+  height: auto;
 }

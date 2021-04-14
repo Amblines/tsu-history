@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="col-9 flex justify-end">
-      <q-select bg-color="white" color="secondary" class="full-width" dense square filled v-model="font" :options="options">
+      <q-select bg-color="white" color="black" class="full-width" dense square filled v-model="font" :options="options">
       </q-select>
     </div>
   </div>
@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       options: [
-        'Georgia', 'Times', 'Arial', 'Helvetica', 'Roboto', 'PingFang'
+        'Verdana', 'Helvetica', 'Roboto'
       ]
     }
   },
@@ -39,7 +39,7 @@ export default {
           key: 'font',
           value: value
         })
-        EventBus.$emit('changeThemeOptions', ['default', { p: { 'font-family': value + ' !important' } }])
+        EventBus.$emit('changeThemeOptions', ['default', { body: { 'font-family': value + ' !important' } }])
       }
     }
   },

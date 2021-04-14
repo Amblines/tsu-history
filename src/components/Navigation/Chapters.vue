@@ -2,7 +2,7 @@
   <q-list class="no-padding">
     <q-item-label class="chapter-header text-black no-padding" header>Оглавление</q-item-label>
     <div class="row items-start justify-between">
-      <div @click="loadChapter(chapter.link)" v-for="chapter in chapters" :key="chapter.id" class="no-padding col-md-5 chapter-item" >
+      <div @click="loadChapter(chapter.link)" v-for="chapter in chapters" :key="chapter.id" class="no-padding col-12 chapter-item" >
         <q-item-section>
         <span>
           {{ chapter.label }}
