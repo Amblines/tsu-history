@@ -12,12 +12,20 @@ export default {
         text: payload.text
       })
     },
+    removeQuotes (state, payload) {
+      const index = state.quotes.indexOf(payload)
+      state.quotes.splice(index, 1)
+    },
     addBookmark (state, payload) {
       state.bookmarks.push({
         link: payload.link,
         progress: payload.progress,
         chapter: payload.chapter
       })
+    },
+    removeBookmark (state, payload) {
+      const index = state.bookmarks.indexOf(payload)
+      state.bookmarks.splice(index, 1)
     }
   },
   state: {

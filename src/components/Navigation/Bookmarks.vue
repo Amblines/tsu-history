@@ -7,12 +7,20 @@
       <div class="overlay-menu-card__info">
         <span>{{ bookmark.progress }}%</span>
       </div>
+      <q-btn
+        icon="close"
+        flat
+        round
+        size="18px"
+        @click.stop="remove(bookmark)"
+      >
+      </q-btn>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import { EventBus } from 'boot/EventBus'
 
 export default {
@@ -23,9 +31,19 @@ export default {
     ])
   },
   methods: {
+    ...mapMutations([
+      'removeBookmark'
+    ]),
     loadPage (link) {
       EventBus.$emit('clickShowOverlayMenuButton')
       EventBus.$emit('loadCfi', link)
+    },
+    remove (bookmark) {
+      this.removeBookmark(bookmark)
+      this.$q.notify({
+        type: 'positive',
+        message: 'Закладка успешно удалена.'
+      })
     }
   }
 }

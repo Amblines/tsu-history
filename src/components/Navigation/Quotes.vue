@@ -6,12 +6,20 @@
       <div class="overlay-menu-card__content">
         <span class="overlay-menu-card__label overlay-menu-card__label--quotes full-width">{{ quote.text | cutText(200) }}</span>
       </div>
+      <q-btn
+        icon="close"
+        flat
+        round
+        size="18px"
+        @click.stop="remove(quote)"
+      >
+      </q-btn>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import { EventBus } from 'boot/EventBus'
 
 export default {
@@ -29,9 +37,19 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'removeQuotes'
+    ]),
     loadQuote (link) {
       EventBus.$emit('loadCfi', link)
       EventBus.$emit('clickShowOverlayMenuButton')
+    },
+    remove (quote) {
+      this.removeQuotes(quote)
+      this.$q.notify({
+        type: 'positive',
+        message: 'Цитата успешно удалена.'
+      })
     }
   }
 }
