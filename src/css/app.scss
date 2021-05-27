@@ -1,9 +1,9 @@
 @import "_mixins.scss";
 
-@include fontface("PingFang", "PingFang", "PingFang-SC-Regular", 400)
-@include fontface("PingFang", "PingFang", "PingFang-SC-Light", 300)
-@include fontface("PingFang", "PingFang", "PingFang-SC-Bold", 600)
-@include fontface("Helvetica", "Helvetica", "HelveticaRegular", 400)
+@include fontface("PingFang", "PingFang", "PingFang-SC-Regular", 400);
+@include fontface("PingFang", "PingFang", "PingFang-SC-Light", 300);
+@include fontface("PingFang", "PingFang", "PingFang-SC-Bold", 600);
+@include fontface("Helvetica", "Helvetica", "HelveticaRegular", 400);
 
 body {
   font-family: "PingFang", sans-serif;

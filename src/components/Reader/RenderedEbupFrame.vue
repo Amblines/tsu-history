@@ -8,6 +8,7 @@ import { mapGetters, mapMutations } from 'vuex'
 import { EventBus } from 'boot/EventBus'
 import Epub from 'epubjs'
 import { colors } from 'quasar'
+import axios from 'axios'
 export default {
   name: 'RenderedEbupFrame',
   data () {
@@ -29,12 +30,25 @@ export default {
       'addBookmark'
     ]),
     async renderBook () {
-      this.bookRendered = Epub('book.epub')
+      const hashFile = '7TqRsFL4iGXmQvuR7n5/qg=='
+      let path = ''
+      if (navigator.onLine) {
+        await axios.get('https://storage.googleapis.com/storage/v1/b/tsu-history/o/book.epub')
+          .then((response) => {
+            path = response.data.md5Hash === hashFile ? 'book.epub' : 'https://storage.googleapis.com/tsu-history/book.epub'
+          })
+          .catch(() => {
+            path = 'book.epub'
+          })
+      } else {
+        path = 'book.epub'
+      }
+      this.bookRendered = Epub(path)
 
       this.bookRendered.rendition = this.bookRendered.renderTo('epubFrame', {
         manager: 'continuous',
         width: '100wv',
-        height: 'calc(100vh - 89px)'
+        height: 'calc(100vh - 121px)'
       })
 
       this.bookRendered.rendition.on('rendered', () => {
